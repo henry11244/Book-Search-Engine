@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Navbar, Nav, Container, Modal, Tab, TabContent, TabPane,
+  Navbar,
+  Nav,
+  Container,
+  Modal,
+  Tab,
+  TabContent,
+  TabPane,
 } from "react-bootstrap";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
@@ -9,6 +15,7 @@ import LoginForm from "./LoginForm";
 import Auth from "../utils/auth";
 
 const AppNavbar = () => {
+  // set modal display state
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -24,6 +31,7 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to="/">
                 Search For Books
               </Nav.Link>
+              {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to="/saved">
@@ -48,6 +56,7 @@ const AppNavbar = () => {
         onHide={() => setShowModal(false)}
         aria-labelledby="signup-modal"
       >
+        {/* tab container to do either signup or login component */}
         <Tab.Container
           defaultActiveKey="login"
           animation={false}
@@ -68,6 +77,7 @@ const AppNavbar = () => {
           <Modal.Body>
             <TabContent>
               <TabPane eventKey="login">
+                {/* <h1>sdcsdcs</h1> */}
                 <LoginForm handleModalClose={() => setShowModal(false)} />
               </TabPane>
               <TabPane eventKey="signup">
